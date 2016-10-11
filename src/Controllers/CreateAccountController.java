@@ -3,7 +3,7 @@ Controller for Create Account FXML
 Atif Hassan
 CSC 202
 */
-package Assignment1;
+package Controllers;
 
 import java.io.File;
 import javafx.stage.FileChooser;
@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.util.Scanner;
+import structures.StackList;
 
 /**
  *
@@ -72,6 +73,7 @@ public class CreateAccountController implements Initializable {
     private Label phoneLabel;
     @FXML
     private Label userNameLabel;
+    private StackList s1 = new StackList(); // Initialize Stack
     private String firstName = null;
     private String lastName = null;
     private LocalDate dob = null;
@@ -159,7 +161,7 @@ public class CreateAccountController implements Initializable {
                                     if (isPWValid()) {
                                         //call User and throw values
                                         one = new User(firstName, lastName, ssn, dob, gender, username, email, phone, photoPath, password);
-                                         
+                                         s1.push(one); //push new user onto stack
                                         //Go back to login page
                                         Stage createAccount = (Stage) registerBut.getScene().getWindow();
                                         

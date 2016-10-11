@@ -3,7 +3,7 @@ main class
 Atif Hassan
 CSC 202
 */
-package Assignment1;
+package Controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

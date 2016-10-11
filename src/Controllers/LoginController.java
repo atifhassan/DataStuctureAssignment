@@ -1,7 +1,7 @@
 //Controller for Login window
 //Atif Hassan 
 //CSC 202
-package Assignment1;
+package Controllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;

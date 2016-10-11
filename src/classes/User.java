@@ -22,11 +22,28 @@ public final class User extends Person {
     private PrintWriter out2;
     private Person one;
 
+    /**
+     *
+     */
     public User() {
     }
 
     //writes to final when new user created
     //there are two files, one for just only usernames, and one will all the of the data
+
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param ssn
+     * @param dob
+     * @param gender
+     * @param username
+     * @param email
+     * @param phone
+     * @param photo
+     * @param password
+     */
     public User(String firstName, String lastName, String ssn, LocalDate dob, String gender, String username, String email, String phone, String photo, String password) {
         one = new Person(firstName, lastName, ssn, dob, gender);
         try {
@@ -64,42 +81,82 @@ public final class User extends Person {
         out.close();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPhoto() {
         return photo;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @param phoneNumber
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @param photo
+     */
     public void setPhoto(String photo) {
         this.photo = photo;
     }

@@ -3,7 +3,7 @@ Atif Hassan
 CSC 202
 Controller for Welcome FXML
 */
-package Assignment1;
+package Controllers;
 
 import java.io.IOException;
 import java.net.URL;
