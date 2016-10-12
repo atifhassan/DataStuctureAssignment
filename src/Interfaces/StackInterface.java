@@ -49,5 +49,5 @@ public interface StackInterface<E> {
      *
      * @return
      */
-    public int size();
+    public int Size();
 }

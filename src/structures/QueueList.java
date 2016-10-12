@@ -8,6 +8,7 @@ package structures;
 import Exceptions.EmptyException;
 import Exceptions.FullException;
 import Interfaces.QueueInterface;
+import java.util.Arrays;
 
 /**
  *
@@ -16,17 +17,20 @@ import Interfaces.QueueInterface;
  */
 public class QueueList<E> implements QueueInterface<E> {
 
-    private int front;
-    private int back;
+    private int front = 0;
+    private int back=0;
     private final int CAPACITY;
     private int size = 0;
+    private E[] list;
 
     QueueList() {
         CAPACITY = 10;
+        list = (E[]) (new Object[CAPACITY]);
     }
 
     QueueList(int size) {
         CAPACITY = size;
+         list = (E[]) (new Object[CAPACITY]);
     }
 
     /**
@@ -38,7 +42,9 @@ public class QueueList<E> implements QueueInterface<E> {
     public void Enqueue(E element) throws FullException {
         if (isFull()) {
             throw new FullException();
-        } else if (back == CAPACITY) {
+        }
+        list[back]= element;
+        if (back == CAPACITY) {
             back = 0;
         } else {
             back++;
@@ -55,19 +61,19 @@ public class QueueList<E> implements QueueInterface<E> {
         if (isEmpty()) {
             throw new EmptyException();
         }
-        else if (front == CAPACITY){
+        E element = list[front];
+        if (front == CAPACITY){
             front = 0;
         } else{
             front++;
         }
-        E element = null;
         size--;
         return element;
     }
 
     @Override
     public String toString() {
-        return "hi";
+        return Arrays.toString(list);
     }
 
     /**

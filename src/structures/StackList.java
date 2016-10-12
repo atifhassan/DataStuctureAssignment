@@ -16,7 +16,7 @@ public class StackList<E> implements StackInterface<E> {
 
     private static StackList top;
     private E data;
-    private static int size = 0;
+    private int size;
     private final StackList next;
 
     /**
@@ -25,6 +25,7 @@ public class StackList<E> implements StackInterface<E> {
     public StackList() {
         top = null;
         next = null;
+        size = 0;
     }
 
     /**
@@ -32,9 +33,10 @@ public class StackList<E> implements StackInterface<E> {
      * @param n1
      * @param node
      */
-    private StackList(E n1, StackList node) {
+    private StackList(E n1, StackList node, int count) {
         data = n1;
         next = node;
+        size = count;
     }
 
     /**
@@ -44,7 +46,7 @@ public class StackList<E> implements StackInterface<E> {
     @Override
     public void push(E element) {
         size++;
-        top = new StackList(element, top);
+        top = new StackList(element, top,size);
     }
 
     /**
@@ -69,10 +71,10 @@ public class StackList<E> implements StackInterface<E> {
         if (isEmpty()) {
             throw new EmptyException();
         } else {
-            size--;
             item = (E) top.data;
         }
         top = top.next;
+        size = top.size;
         return (item);
     }
 
@@ -90,7 +92,7 @@ public class StackList<E> implements StackInterface<E> {
      * @return
      */
     @Override
-    public int size() {
+    public int Size() {
         return size;
     }
 
@@ -100,7 +102,7 @@ public class StackList<E> implements StackInterface<E> {
      */
     @Override
     public String toString() {
-        return "hi";
+        return top.data.toString();
     }
 
     /**
