@@ -5,6 +5,9 @@
  */
 package Interfaces;
 
+import Exceptions.EmptyException;
+import Exceptions.FullException;
+
 /**
  *
  * @author Atif Hassan
@@ -14,13 +17,17 @@ public interface QueueInterface<E> {
 
     /**
      *
+     * @param element
+     * @throws Exceptions.FullException
      */
-    public void Enqueue();
+    public void Enqueue(E element)throws FullException;
 
     /**
      *
+     * @return 
+     * @throws Exceptions.EmptyException 
      */
-    public void Dequeue();
+    public E Dequeue() throws EmptyException;
 
     /**
      *

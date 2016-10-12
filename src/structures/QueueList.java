@@ -5,76 +5,69 @@
  */
 package structures;
 
+import Exceptions.EmptyException;
+import Exceptions.FullException;
 import Interfaces.QueueInterface;
-import classes.User;
 
 /**
  *
  * @author atifm
  * @param <E>
  */
-public class QueueList<E> implements QueueInterface<E>{
+public class QueueList<E> implements QueueInterface<E> {
 
-    private static QueueList front; 
-    private User data;
-    private static QueueList back;
-    
+    private int front;
+    private int back;
+    private final int CAPACITY;
+    private int size = 0;
+
     QueueList() {
-        front = null;
-        back = null;
-    }
-    QueueList(User n1, QueueList node) {
-        data = n1;
-        back = node;
+        CAPACITY = 10;
     }
 
-    /**
-     *
-     */
-    public void enqueue() {
-
+    QueueList(int size) {
+        CAPACITY = size;
     }
 
     /**
      *
+     * @param element
+     * @throws Exceptions.FullException
      */
-    public void dequeue() {
-
+    @Override
+    public void Enqueue(E element) throws FullException {
+        if (isFull()) {
+            throw new FullException();
+        } else if (back == CAPACITY) {
+            back = 0;
+        } else {
+            back++;
+        }
+        size++;
     }
-    
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public E Dequeue() throws EmptyException {
+        if (isEmpty()) {
+            throw new EmptyException();
+        }
+        else if (front == CAPACITY){
+            front = 0;
+        } else{
+            front++;
+        }
+        E element = null;
+        size--;
+        return element;
+    }
+
     @Override
     public String toString() {
         return "hi";
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void Enqueue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *Enqueue
-         *void
-         *null
-         *structures.QueueList
-         *QueueList
-         */
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void Dequeue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *Dequeue
-         *void
-         *null
-         *structures.QueueList
-         *QueueList
-         */
     }
 
     /**
@@ -83,14 +76,7 @@ public class QueueList<E> implements QueueInterface<E>{
      */
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *isFull
-         *boolean
-         *false
-         *structures.QueueList
-         *QueueList
-         */
+        return size == CAPACITY;
     }
 
     /**
@@ -99,14 +85,7 @@ public class QueueList<E> implements QueueInterface<E>{
      */
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *isEmpty
-         *boolean
-         *false
-         *structures.QueueList
-         *QueueList
-         */
+        return size == 0;
     }
 
     /**
@@ -115,13 +94,6 @@ public class QueueList<E> implements QueueInterface<E>{
      */
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *size
-         *int
-         *0
-         *structures.QueueList
-         *QueueList
-         */
+        return size;
     }
 }
