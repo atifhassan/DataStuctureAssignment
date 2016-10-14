@@ -62,6 +62,7 @@ public class QueueList<E> implements QueueInterface<E> {
             throw new EmptyException();
         }
         E element = list[front];
+        list[front]=null;
         if (front == CAPACITY){
             front = 0;
         } else{
