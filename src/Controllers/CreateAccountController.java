@@ -2,13 +2,15 @@
 Controller for Create Account FXML
 Atif Hassan
 CSC 202
-*/
+ */
 package Controllers;
 
+import Exceptions.EmptyException;
+import Exceptions.FullException;
 import java.io.File;
 import javafx.stage.FileChooser;
 import classes.User;
-import java.io.FileNotFoundException;
+import classes.UserList;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -23,14 +25,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.util.Scanner;
-import structures.StackList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author atifm
  */
 public class CreateAccountController implements Initializable {
-    
+
     @FXML
     private Button openDialog;
     @FXML
@@ -52,8 +55,6 @@ public class CreateAccountController implements Initializable {
     @FXML
     private PasswordField pword2Field;
     @FXML
-    private Button cancel;
-    @FXML
     private Button registerBut;
     @FXML
     private Label pw1Label;
@@ -73,7 +74,7 @@ public class CreateAccountController implements Initializable {
     private Label phoneLabel;
     @FXML
     private Label userNameLabel;
-    private StackList s1 = new StackList(); // Initialize Stack
+    private UserList list = new UserList();
     private String firstName = null;
     private String lastName = null;
     private LocalDate dob = null;
@@ -88,33 +89,23 @@ public class CreateAccountController implements Initializable {
     private FileChooser fileCH = new FileChooser();
     private Scanner read;
     private User one;
+    private Pattern pattern;
+    private Matcher match;
 
-/*
-    Returns user back to Login in screen
-    */    
+    /**
+     * Returns user to Login Window
+     */
     @FXML
     private void cancelAccountBut() {
-        Stage createAccount = (Stage) cancel.getScene().getWindow();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("Views/Login.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Scene scene = new Scene(root);
-        
-        createAccount.setTitle("Login");
-        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-        createAccount.setScene(scene);
-        
-        createAccount.centerOnScreen();
+        returnToLogin();
     }
-    
-   /*
-    Browse Button Action
-    Opens Dialog box to select file
-    */
+
+    /*
+   
+     */
+    /**
+     * Browse Button Action Opens Dialog box to select file
+     */
     @FXML
     private void fileChoose() {
         Stage stage = (Stage) openDialog.getScene().getWindow();
@@ -123,12 +114,14 @@ public class CreateAccountController implements Initializable {
             photoField.setText(file.getPath());
         }
     }
-    
-    /*
-    Creates Account from form
-    */
+
+    /**
+     *
+     * @throws EmptyException
+     * @throws FullException
+     */
     @FXML
-    private void createAccountBut() {
+    private void createAccountBut() throws EmptyException, FullException {
         //Reset all the error labels
         fillLabel.setText("");
         pw1Label.setText("");
@@ -149,90 +142,72 @@ public class CreateAccountController implements Initializable {
         photoPath = photoField.getText();
         password = pwordField.getText();
         password2 = pword2Field.getText();
-        
-        
+
         if (isFilled()) {
-            if (isUserNameValid()) {
-                if (isUserNameAvailable()) {
-                    if (isEmailValid()) {
-                        if (isPhoneValid()) {
-                            if (isSSNValid()) {
-                                if (password.equals(password2)) {
-                                    if (isPWValid()) {
-                                        //call User and throw values
-                                        one = new User(firstName, lastName, ssn, dob, gender, username, email, phone, photoPath, password);
-                                         s1.push(one); //push new user onto stack
-                                        //Go back to login page
-                                        Stage createAccount = (Stage) registerBut.getScene().getWindow();
-                                        
-                                        Parent root = null;
-                                        try {
-                                            root = FXMLLoader.load(getClass().getResource("Views/Login.fxml"));
-                                        } catch (IOException ex) {
-                                            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-                                        Scene scene = new Scene(root);
-                                        createAccount.setTitle("Login");
-                                        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-                                        createAccount.setScene(scene);
-                                        createAccount.centerOnScreen();
-                                    } else {
-                                        pw1Label.setText("Password Invalid");
+            if (isUserNameAvailable()) {
+                if (isEmailValid()) {
+                    if (isPhoneValid()) {
+                        if (isSSNValid()) {
+                            if (password.equals(password2)) { // do passwords match?
+                                if (isPWValid()) {
+                                    //create User and pass values
+                                    one = new User(firstName, lastName, ssn, dob, gender, username, email, phone, photoPath, password);
+
+                                    //add User to the list
+                                    try {
+                                        list.addUser(one);
+                                    } catch (FullException ex) {
+                                        Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
+
+                                    //write list to file
+                                    try {
+                                        list.WriteList();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+
+                                    //Go back to login page
+                                    returnToLogin();
                                 } else {
-                                    pw2Label.setText("Passwords Do not Match");
+                                    pw1Label.setText("Password Invalid");
                                 }
                             } else {
-                                ssnLabel.setText("SSN Invalid");
+                                pw2Label.setText("Passwords Do not Match");
                             }
                         } else {
-                            phoneLabel.setText("Phone Number Invalid");
+                            ssnLabel.setText("SSN Invalid");
                         }
                     } else {
-                        emailLabel.setText("Email Invalid");
+                        phoneLabel.setText("Phone Number Invalid");
                     }
                 } else {
-                    userNameLabel.setText("Username not Available");
+                    emailLabel.setText("Email Invalid");
                 }
             } else {
-                userNameLabel.setText("Username Invalid");
+                userNameLabel.setText("Username not Available");
             }
         } else {
             fillLabel.setText("All Fields Must be Completed");
-            
+
         }
     }
-    
-    //check username list
-    private boolean isUserNameAvailable() {
-        File nameList = new File("databases/userNameList.txt");
-        String tempName;
-        try {
-            read = new Scanner(nameList);
-        } catch (FileNotFoundException ex) {
-        }
-        do{
-            tempName = read.nextLine();
-            if(tempName.equals("(("+username+"))")){
-                return false;
-            }
-        }while(read.hasNextLine());
-        read.close();
-        return true;
+
+    /**
+     * check username list
+     *
+     * @return @throws EmptyException
+     * @throws FullException
+     */
+    private boolean isUserNameAvailable() throws EmptyException, FullException {
+        return !list.doesUsernameExist(username);
     }
-    
-    //username can't have spacer paranthesis
-    private boolean isUserNameValid() {
-        if (username.startsWith("((")) {
-            return false;
-        } else if (username.endsWith("))")) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    //make sure all forms are filled
+
+    /**
+     * make sure all forms are filled
+     *
+     * @return
+     */
     private boolean isFilled() {
         if (firstName.isEmpty()) {
             return false;
@@ -260,40 +235,30 @@ public class CreateAccountController implements Initializable {
             return true;
         }
     }
-    
-    //phone numnber needs to be 10 numbers
+
+    /**
+     * phone number needs to be 10 numbers
+     *
+     * @return
+     */
     private boolean isPhoneValid() {
-        if (phone.length() == 10) {
-            try {
-                
-                Double.parseDouble(phone);
-                
-            } catch (NumberFormatException e) {
-                return false;
-            }
-            return true;
-        } else {
-            return false;
-        }
+        return Pattern.matches("^[0-9]{10}$", phone);
     }
-    
-    // ssn needs to be 9 numbers
+
+    /**
+     * Social needs to be 9 numbers
+     *
+     * @return
+     */
     private boolean isSSNValid() {
-        if (ssn.length() == 9) {
-            try {
-                
-                Double.parseDouble(ssn);
-                
-            } catch (NumberFormatException e) {
-                return false;
-            }
-            return true;
-        } else {
-            return false;
-        }
+        return Pattern.matches("^[0-9]{9}$", ssn);
     }
-    
-    //email has to me in ***@mail.*** format
+
+    /**
+     * email has to me in ***@mail.*** format
+     *
+     * @return
+     */
     private boolean isEmailValid() {
         if (email.contains("@mail.")) {
             if (!email.endsWith(".")) {
@@ -309,148 +274,35 @@ public class CreateAccountController implements Initializable {
             return false;
         }
     }
-    
-    // does passowrd have uppercase lowercase number and special
+
+    /**
+     * does password have uppercase lowercase number and special char
+     *
+     * @return
+     */
     private boolean isPWValid() {
-        if (password.equals(password.toLowerCase())) {
-            return false;
-        } else if (password.equals(password.toUpperCase())) {
-            return false;
-        } else if (!haveSpecialChar()) {
-            return false;
-        } else if (!haveNumbers()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    //check numbers for password
-    private boolean haveNumbers() {
-        if (!password.contains("1")) {
-            if (!password.contains("2")) {
-                if (!password.contains("3")) {
-                    if (!password.contains("4")) {
-                        if (!password.contains("5")) {
-                            if (!password.contains("6")) {
-                                if (!password.contains("7")) {
-                                    if (!password.contains("8")) {
-                                        if (!password.contains("9")) {
-                                            if (!password.contains("0")) {
-                                                return false;
-                                            } else {
-                                                return true;
-                                            }
-                                        } else {
-                                            return true;
-                                        }
-                                    } else {
-                                        return true;
-                                    }
-                                } else {
-                                    return true;
-                                }
-                            } else {
-                                return true;
-                            }
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        } else {
-            return true;
-        }
+        return Pattern.matches("^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).{0,}$", password);
     }
 
-    /*
-    Special characters are
-    ! @ # $ % ^ & * ? < > _ - = + ; : 
+    /**
+     * return to login window
      */
-    private boolean haveSpecialChar() {
-        if (!password.contains("!")) {
-            if (!password.contains("@")) {
-                if (!password.contains("#")) {
-                    if (!password.contains("$")) {
-                        if (!password.contains("%")) {
-                            if (!password.contains("^")) {
-                                if (!password.contains("&")) {
-                                    if (!password.contains("?")) {
-                                        if (!password.contains("<")) {
-                                            if (!password.contains(">")) {
-                                                if (!password.contains(">")) {
-                                                    if (!password.contains("_")) {
-                                                        if (!password.contains("-")) {
-                                                            if (!password.contains("=")) {
-                                                                if (!password.contains("+")) {
-                                                                    if (!password.contains(";")) {
-                                                                        if (!password.contains(":")) {
-                                                                            if (!password.contains("*")) {
-                                                                                return false;
-                                                                            } else {
-                                                                                return true;
-                                                                            }
-                                                                        } else {
-                                                                            return true;
-                                                                        }
-                                                                    } else {
-                                                                        return true;
-                                                                    }
-                                                                    
-                                                                } else {
-                                                                    return true;
-                                                                }
-                                                            } else {
-                                                                return true;
-                                                            }
-                                                        } else {
-                                                            return true;
-                                                        }
-                                                    } else {
-                                                        return true;
-                                                    }
-                                                } else {
-                                                    return true;
-                                                }
-                                            } else {
-                                                return true;
-                                            }
-                                        } else {
-                                            return true;
-                                        }
-                                    } else {
-                                        return true;
-                                    }
-                                } else {
-                                    return true;
-                                }
-                            } else {
-                                return true;
-                            }
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        } else {
-            return true;
+    private void returnToLogin() {
+        Stage createAccount = (Stage) registerBut.getScene().getWindow();
+
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Views/Login.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Scene scene = new Scene(root);
+        createAccount.setTitle("Login");
+        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        createAccount.setScene(scene);
+        createAccount.centerOnScreen();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" fx:controller="Assignment1.WelcomeController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<StackPane maxHeight="-Infinity" fx:controller="Controllers.WelcomeController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
         <javafx.scene.image.ImageView fitHeight="400" fitWidth="600.0">
             <image>

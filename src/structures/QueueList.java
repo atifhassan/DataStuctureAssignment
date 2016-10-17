@@ -8,6 +8,7 @@ package structures;
 import Exceptions.EmptyException;
 import Exceptions.FullException;
 import Interfaces.QueueInterface;
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -15,22 +16,29 @@ import java.util.Arrays;
  * @author atifm
  * @param <E>
  */
-public class QueueList<E> implements QueueInterface<E> {
+public class QueueList<E> implements Serializable, QueueInterface<E> {
 
     private int front = 0;
-    private int back=0;
+    private int back = 0;
     private final int CAPACITY;
     private int size = 0;
     private E[] list;
 
-    QueueList() {
+    /**
+     *
+     */
+    public QueueList() {
         CAPACITY = 10;
         list = (E[]) (new Object[CAPACITY]);
     }
 
-    QueueList(int size) {
+    /**
+     *
+     * @param size
+     */
+    public QueueList(int size) {
         CAPACITY = size;
-         list = (E[]) (new Object[CAPACITY]);
+        list = (E[]) (new Object[CAPACITY]);
     }
 
     /**
@@ -43,7 +51,7 @@ public class QueueList<E> implements QueueInterface<E> {
         if (isFull()) {
             throw new FullException();
         }
-        list[back]= element;
+        list[back] = element;
         if (back == CAPACITY) {
             back = 0;
         } else {
@@ -53,8 +61,9 @@ public class QueueList<E> implements QueueInterface<E> {
     }
 
     /**
-     *
+     * 
      * @return
+     * @throws EmptyException 
      */
     @Override
     public E Dequeue() throws EmptyException {
@@ -62,10 +71,10 @@ public class QueueList<E> implements QueueInterface<E> {
             throw new EmptyException();
         }
         E element = list[front];
-        list[front]=null;
-        if (front == CAPACITY){
+        list[front] = null;
+        if (front == CAPACITY) {
             front = 0;
-        } else{
+        } else {
             front++;
         }
         size--;

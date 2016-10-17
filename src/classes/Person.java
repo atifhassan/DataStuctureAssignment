@@ -7,13 +7,14 @@ package classes;
  *
  * @author atifm
  */
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author atifm
  */
-public class Person {
+public class Person  implements Serializable{
 
     private String firstName;
     private String lastName;
