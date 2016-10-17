@@ -12,7 +12,7 @@ import Interfaces.OrderedListInterface;
  * @author atifm
  * @param <E>
  */
-public class OrderList<E> extends LinkedList <E> implements OrderedListInterface<E>{
+public class OrderList<E extends Comparable> extends LinkedList <E> implements OrderedListInterface<E>{
 
     /**
      *

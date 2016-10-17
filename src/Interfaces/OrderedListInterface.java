@@ -10,7 +10,7 @@ package Interfaces;
  * @author Atif Hassan
  * @param <E>
  */
-public interface OrderedListInterface<E> extends ListInterface<E>{
+public interface OrderedListInterface<E extends Comparable> extends ListInterface<E>{
 
     /**
      *

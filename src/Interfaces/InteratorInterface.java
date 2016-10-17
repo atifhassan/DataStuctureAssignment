@@ -10,7 +10,7 @@ package Interfaces;
  * @author Atif Hassan
  * @param <E>
  */
-public interface InteratorInterface<E> {
+public interface InteratorInterface<E extends Comparable> {
 
     /**
      *

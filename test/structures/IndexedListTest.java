@@ -132,7 +132,7 @@ public class IndexedListTest {
     @Test
     public void testAdd_GenericType() {
         System.out.println("add");
-        Object element = null;
+        String element = null;
         IndexedList instance = new IndexedList();
         instance.add(element);
         // TODO review the generated test code and remove the default call to fail.
@@ -146,7 +146,7 @@ public class IndexedListTest {
     @Test
     public void testRemove_GenericType() throws Exception {
         System.out.println("remove");
-        Object element = null;
+        String element = null;
         IndexedList instance = new IndexedList();
         Object expResult = null;
         Object result = instance.remove(element);
@@ -161,7 +161,7 @@ public class IndexedListTest {
     @Test
     public void testContains_GenericType() {
         System.out.println("contains");
-        Object element = null;
+        String element = null;
         IndexedList instance = new IndexedList();
         boolean expResult = false;
         boolean result = instance.contains(element);
@@ -176,7 +176,7 @@ public class IndexedListTest {
     @Test
     public void testGet_GenericType() {
         System.out.println("get");
-        Object element = null;
+        String element = null;
         IndexedList instance = new IndexedList();
         Object expResult = null;
         Object result = instance.get(element);

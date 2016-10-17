@@ -10,6 +10,6 @@ package Interfaces;
  * @author Atif Hassan
  * @param <E>
  */
-public interface IndexedListInterface<E> extends ListInterface<E>{
+public interface IndexedListInterface<E extends Comparable> extends ListInterface<E>{
     
 }

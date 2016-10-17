@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author atifm
  */
-public final class User extends Person implements Serializable {
+public final class User extends Person implements Serializable,Comparable {
 
     private String username;
     private String email;
@@ -25,7 +25,17 @@ public final class User extends Person implements Serializable {
      */
     public User() {
     }
-
+    
+    /**
+     * 
+     * @param username
+     * @param password 
+     */
+    public User(String username, String password){
+        this.username= username;
+        this.password = password;
+    }
+    
     /**
      * 
      *
@@ -43,11 +53,11 @@ public final class User extends Person implements Serializable {
     public User(String firstName, String lastName, String ssn, LocalDate dob, String gender, String username, String email, String phone, String photo, String password) {
         one = new Person(firstName, lastName, ssn, dob, gender);
 
-        setUsername(username);
-        setPassword(password);
-        setEmail(email);
-        setPhoto(photo);
-        setPhoneNumber(phone);
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.photo = photo;
+        this.phoneNumber = phone;
     }
 
     /**
@@ -141,5 +151,13 @@ public final class User extends Person implements Serializable {
                 + "\nSSN: " + getSSN()
                 + "\nPhoto Path: " + getPhoto()
                 + "\nPassword: " + getPassword();
+    }
+
+    public boolean equals(User compare){
+        return this.username.equals(compare.getUsername())&& this.password.equals(compare.getPassword());
+    }
+    @Override
+    public int compareTo(Object compare) {
+        return this.username.compareTo(((User)compare).getUsername());
     }
 }

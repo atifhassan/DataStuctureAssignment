@@ -6,6 +6,7 @@
 package structures;
 
 import Exceptions.EmptyException;
+import Exceptions.NullElementException;
 import Interfaces.ListInterface;
 
 /**
@@ -13,46 +14,85 @@ import Interfaces.ListInterface;
  * @author Atif Hassan
  * @param <E>
  */
-public class LinkedList<E> implements ListInterface<E>{
+public class LinkedList<E extends Comparable> implements ListInterface<E> {
 
-    private Node<E> llpointer;
+    private Node<E> headPointer;
+    private Node<E> currentPointer;
+    private Node<E> prevPointer;
     private int count = 0;
+
     /**
      *
      */
     public LinkedList() {
-        llpointer = null;
+        headPointer = null;
     }
+
     /**
-     * 
-     * @param element 
+     *
+     * @param element
      */
     @Override
-    public void add(E element){
-        Node<E> newNode = new Node<> (element);
-        if(!isEmpty()){
-        newNode.setPointer(llpointer);
+    public void add(E element) {
+//        Node<E> newNode = new Node<>(element);
+//        if (!isEmpty()) {
+//            newNode.setPointer(headPointer);
+//        }
+//        if ((headPointer.equals(currentPointer))) {
+//
+//        } else {
+//
+//        }
+//        headPointer = newNode;
+//        count++;
+
+        Node<E> newNode = new Node<>(element);
+        if (isEmpty()) {
+            newNode.setPointer(headPointer);
+            headPointer = newNode;
+        } else {
+            currentPointer = headPointer;
+            prevPointer = headPointer;
+            while (currentPointer != null) {
+                if (element.compareTo(currentPointer.getData()) > 0) {
+                    prevPointer = currentPointer;
+                    currentPointer = currentPointer.getPointer();
+                } else if (headPointer.equals(currentPointer)) {
+                    //insert at beginning
+                    newNode.setPointer(headPointer);
+                    headPointer = newNode;
+                    break;
+                } else {
+                    //insert in before current
+                    newNode.setPointer(currentPointer);
+                    prevPointer.setPointer(newNode);
+                    break;
+                }
+            }
+            //insert at end
+            if (currentPointer == null) {
+                prevPointer.setPointer(newNode);
+            }
         }
-        llpointer = newNode;
         count++;
     }
-    
+
     /**
      *
      * @return
      */
     @Override
-    public boolean isEmpty(){
-        return llpointer == null;
+    public boolean isEmpty() {
+        return headPointer == null;
     }
-    
+
     @Override
-    public String toString(){
-        Node<E> current = llpointer;
+    public String toString() {
+        Node<E> temp = headPointer;
         String list = "";
-        while(current!=null){
-            list+=current.getData()+ "";
-            current = current.getPointer();
+        while (temp != null) {
+            list += temp.getData() + " ";
+            temp = temp.getPointer();
         }
         return list;
     }
@@ -62,14 +102,30 @@ public class LinkedList<E> implements ListInterface<E>{
      * @param element
      * @return
      * @throws EmptyException
+     * @throws Exceptions.NullElementException
      */
     @Override
-    public E remove(E element) throws EmptyException{
-        if (isEmpty()){
-         throw new EmptyException("The list is Empty");
+    public E remove(E element) throws EmptyException, NullElementException {
+        if (isEmpty()) {
+            throw new EmptyException("The list is Empty");
         }
-        E temp = llpointer.getData();
-        llpointer = llpointer.getPointer();
+        if (!contains(element)) {
+            throw new NullElementException("Element does not exist");
+        }
+
+        Node<E> currentTemp = headPointer;
+        E temp = currentTemp.getData();
+        if (temp != element) {
+            Node<E> previous;
+            do {
+                previous = currentTemp;
+                currentTemp = currentTemp.getPointer();
+                temp = currentTemp.getData();
+            } while (temp != element);
+            previous.setPointer(currentTemp.getPointer());
+        } else {
+            headPointer = headPointer.getPointer();
+        }
         count--;
         return temp;
     }
@@ -81,31 +137,41 @@ public class LinkedList<E> implements ListInterface<E>{
      */
     @Override
     public boolean contains(E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *contains
-         *boolean
-         *false
-         *structures.LinkedList
-         *LinkedList
-         */
+        E temp;
+        Node<E> currentTemp = headPointer;
+        boolean contains = false;
+        while (currentTemp != null) {
+            temp = currentTemp.getData();
+            if (temp == element) {
+                contains = true;
+            }
+            currentTemp = currentTemp.getPointer();
+        }
+        return contains;
     }
 
     /**
      *
      * @param element
      * @return
+     * @throws Exceptions.EmptyException
+     * @throws Exceptions.NullElementException
      */
     @Override
-    public E get(E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *get
-         *E
-         *null
-         *structures.LinkedList
-         *LinkedList
-         */
+    public E get(E element) throws EmptyException, NullElementException {
+        if (isEmpty()) {
+            throw new EmptyException("The list is Empty");
+        }
+        if (!contains(element)) {
+            throw new NullElementException("Element does not exist");
+        }
+        Node<E> tempPointer = headPointer;
+        E temp = tempPointer.getData();
+        do {
+            tempPointer = tempPointer.getPointer();
+            temp = tempPointer.getData();
+        } while (temp != element);
+        return temp;
     }
 
     /**
@@ -122,14 +188,9 @@ public class LinkedList<E> implements ListInterface<E>{
      */
     @Override
     public void reset() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *reset
-         *void
-         *null
-         *structures.LinkedList
-         *LinkedList
-         */
+        headPointer = null;
+        currentPointer = null;
+        prevPointer = null;
     }
 
     /**
@@ -138,14 +199,9 @@ public class LinkedList<E> implements ListInterface<E>{
      */
     @Override
     public E getNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *getNext
-         *E
-         *null
-         *structures.LinkedList
-         *LinkedList
-         */
+        E temp = currentPointer.getPointer().getData();
+        currentPointer = currentPointer.getPointer();
+        return temp;
     }
 
     /**
@@ -154,14 +210,7 @@ public class LinkedList<E> implements ListInterface<E>{
      */
     @Override
     public boolean hasNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-         *hasNext
-         *boolean
-         *false
-         *structures.LinkedList
-         *LinkedList
-         */
+        return currentPointer != null;
     }
-    
+
 }

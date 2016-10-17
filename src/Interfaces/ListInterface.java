@@ -6,13 +6,14 @@
 package Interfaces;
 
 import Exceptions.EmptyException;
+import Exceptions.NullElementException;
 
 /**
  *
  * @author Atif Hassan
  * @param <E>
  */
-public interface ListInterface<E> extends InteratorInterface<E>{
+public interface ListInterface<E extends Comparable> extends InteratorInterface<E>{
 
     /**
      *
@@ -25,8 +26,9 @@ public interface ListInterface<E> extends InteratorInterface<E>{
      * @param element
      * @return
      * @throws EmptyException
+     * @throws Exceptions.NullElementException
      */
-    public E remove(E element)throws EmptyException;
+    public E remove(E element)throws EmptyException, NullElementException;
 
     /**
      *
@@ -51,6 +53,8 @@ public interface ListInterface<E> extends InteratorInterface<E>{
      *
      * @param element
      * @return
+     * @throws Exceptions.EmptyException
+     * @throws Exceptions.NullElementException
      */
-    public E get(E element);
+    public E get(E element) throws EmptyException,NullElementException;
 }

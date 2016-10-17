@@ -13,7 +13,7 @@ import Interfaces.IndexedListInterface;
  * @author atifm
  * @param <E>
  */
-public class IndexedList<E> extends LinkedList<E> implements IndexedListInterface<E>{
+public class IndexedList<E extends Comparable> extends LinkedList<E> implements IndexedListInterface<E>{
 
     /**
      *
