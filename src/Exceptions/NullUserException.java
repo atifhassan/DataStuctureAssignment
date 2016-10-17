@@ -12,7 +12,7 @@ package Exceptions;
 public class NullUserException extends Exception {
 
     /**
-     *
+     *Constructs a new exception with null as its detail message. 
      */
     public NullUserException() {
         super();

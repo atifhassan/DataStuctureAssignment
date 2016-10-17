@@ -20,39 +20,39 @@ import static org.junit.Assert.*;
  */
 public class OrderedLinkedListTest {
 
-    /**
-     *
-     */
-    public OrderedLinkedListTest() {
-    }
-
-    /**
-     *
-     */
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    /**
-     *
-     */
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    /**
-     *
-     */
-    @Before
-    public void setUp() {
-    }
-
-    /**
-     *
-     */
-    @After
-    public void tearDown() {
-    }
+//    /**
+//     *
+//     */
+//    public OrderedLinkedListTest() {
+//    }
+//
+//    /**
+//     *
+//     */
+//    @BeforeClass
+//    public static void setUpClass() {
+//    }
+//
+//    /**
+//     *
+//     */
+//    @AfterClass
+//    public static void tearDownClass() {
+//    }
+//
+//    /**
+//     *
+//     */
+//    @Before
+//    public void setUp() {
+//    }
+//
+//    /**
+//     *
+//     */
+//    @After
+//    public void tearDown() {
+//    }
 
     /**
      * Test of add method, of class OrderedLinkedList.
@@ -196,9 +196,10 @@ public class OrderedLinkedListTest {
 
     /**
      * Test of getNext method, of class OrderedLinkedList.
+     * @throws Exceptions.NullElementException
      */
     @Test
-    public void testGetNext() {
+    public void testGetNext() throws NullElementException {
         System.out.println("getNext");
          OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");

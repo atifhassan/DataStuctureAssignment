@@ -30,7 +30,7 @@ public class UserList {
     private final String FILE;
 
     /**
-     *
+     * creates a new queue and sets file name to default
      */
     public UserList() {
         FILE = "databases/userList.dat";

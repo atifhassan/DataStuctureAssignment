@@ -4,11 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/structures/QueueList.java</file>
-            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/structures/LinkedList.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/Interfaces/InteratorInterface.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/test/structures/OrderedLinkedListTest.java</file>
             <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/classes/Person.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/test/classes/UserTest.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/Exceptions/NullUserException.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/classes/User.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/structures/OrderedLinkedList.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/structures/IndexedLinkedList.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/test/structures/IndexedLinkedListTest.java</file>
             <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/classes/UserList.java</file>
             <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/structures/Node.java</file>
-            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/structures/IndexedList.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/src/structures/StackList.java</file>
+            <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/test/structures/StackListTest.java</file>
             <file>file:/C:/Users/atifm/OneDrive/Google%20Drive/workspace/CSC%20202/Assignment2/test/structures/QueueListTest.java</file>
         </group>
     </open-files>

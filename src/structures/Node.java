@@ -16,7 +16,7 @@ public class Node<T> {
     private Node<T> pointer;
 
     /**
-     *
+     * creates a new null node
      */
     public Node() {
         data = null;

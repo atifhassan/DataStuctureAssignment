@@ -22,7 +22,7 @@ public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedLis
     private int count = 0;
 
     /**
-     *
+     * starts a linked list with null node
      */
     public OrderedLinkedList() {
         headPointer = null;

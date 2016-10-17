@@ -20,7 +20,7 @@ public class StackList<E> implements StackInterface<E> {
     private final StackList next;
 
     /**
-     *
+     * creates recursive node
      */
     public StackList() {
         top = null;

@@ -15,7 +15,7 @@ import Exceptions.NullElementException;
 public interface InteratorInterface<E extends Comparable> {
 
     /**
-     *
+     *Reset all pointer and clear list
      */
     public void reset();
 

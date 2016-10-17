@@ -19,7 +19,7 @@ public final class User extends Person implements Serializable,Comparable {
     private String photo;
 
     /**
-     *
+     * Stores login information
      */
     public User() {
     }

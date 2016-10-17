@@ -20,39 +20,39 @@ public class UserTest {
     User test1 = new User("Ant", "a");
     User test2 = new User("Bat", "b");
 
-    /**
-     *
-     */
-    public UserTest() {
-    }
-    
-    /**
-     *
-     */
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    /**
-     *
-     */
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    /**
-     *
-     */
-    @Before
-    public void setUp() {
-    }
-    
-    /**
-     *
-     */
-    @After
-    public void tearDown() {
-    }
+//    /**
+//     *
+//     */
+//    public UserTest() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @BeforeClass
+//    public static void setUpClass() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @AfterClass
+//    public static void tearDownClass() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @Before
+//    public void setUp() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @After
+//    public void tearDown() {
+//    }
 
     /**
      * Test of getUsername method, of class User.

@@ -19,39 +19,39 @@ import static org.junit.Assert.*;
  */
 public class IndexedLinkedListTest {
     
-    /**
-     *
-     */
-    public IndexedLinkedListTest() {
-    }
-    
-    /**
-     *
-     */
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    /**
-     *
-     */
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    /**
-     *
-     */
-    @Before
-    public void setUp() {
-    }
-    
-    /**
-     *
-     */
-    @After
-    public void tearDown() {
-    }
+//    /**
+//     *
+//     */
+//    public IndexedLinkedListTest() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @BeforeClass
+//    public static void setUpClass() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @AfterClass
+//    public static void tearDownClass() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @Before
+//    public void setUp() {
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @After
+//    public void tearDown() {
+//    }
 
     /**
      * Test of add method, of class IndexedLinkedList.

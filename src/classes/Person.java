@@ -23,7 +23,7 @@ public class Person  implements Serializable{
     private String gender;
 
     /**
-     *
+     * This class is super class for User class
      */
     public Person() {
 

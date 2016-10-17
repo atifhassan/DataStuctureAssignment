@@ -25,7 +25,7 @@ public class QueueList<E> implements Serializable, QueueInterface<E> {
     private E[] list;
 
     /**
-     *
+     * creates queue array with default length
      */
     public QueueList() {
         CAPACITY = 10;
