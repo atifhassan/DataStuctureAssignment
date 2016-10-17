@@ -7,14 +7,14 @@ package structures;
 
 import Exceptions.EmptyException;
 import Exceptions.NullElementException;
-import Interfaces.ListInterface;
+import Interfaces.OrderedLinkedListInterface;
 
 /**
  *
  * @author Atif Hassan
  * @param <E>
  */
-public class LinkedList<E extends Comparable> implements ListInterface<E> {
+public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedListInterface<E> {
 
     private Node<E> headPointer;
     private Node<E> currentPointer;
@@ -24,7 +24,7 @@ public class LinkedList<E extends Comparable> implements ListInterface<E> {
     /**
      *
      */
-    public LinkedList() {
+    public OrderedLinkedList() {
         headPointer = null;
     }
 
@@ -34,17 +34,6 @@ public class LinkedList<E extends Comparable> implements ListInterface<E> {
      */
     @Override
     public void add(E element) {
-//        Node<E> newNode = new Node<>(element);
-//        if (!isEmpty()) {
-//            newNode.setPointer(headPointer);
-//        }
-//        if ((headPointer.equals(currentPointer))) {
-//
-//        } else {
-//
-//        }
-//        headPointer = newNode;
-//        count++;
 
         Node<E> newNode = new Node<>(element);
         if (isEmpty()) {
@@ -53,7 +42,7 @@ public class LinkedList<E extends Comparable> implements ListInterface<E> {
         } else {
             currentPointer = headPointer;
             prevPointer = headPointer;
-            while (currentPointer != null) {
+            while (hasNext()) {
                 if (element.compareTo(currentPointer.getData()) > 0) {
                     prevPointer = currentPointer;
                     currentPointer = currentPointer.getPointer();
@@ -198,7 +187,10 @@ public class LinkedList<E extends Comparable> implements ListInterface<E> {
      * @return
      */
     @Override
-    public E getNext() {
+    public E getNext() throws NullElementException{
+        if (!hasNext()){
+            throw new NullElementException("At the end of List");
+        }
         E temp = currentPointer.getPointer().getData();
         currentPointer = currentPointer.getPointer();
         return temp;

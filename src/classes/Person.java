@@ -38,11 +38,11 @@ public class Person  implements Serializable{
      * @param gender
      */
     public Person(String firstName, String lastName, String ssn, LocalDate dob, String gender) {
-        setFirstName(firstName);
-        setLastName(lastName);
-        setSSN(ssn);
-        setDOB(dob);
-        setGender(gender);
+        this.firstName= firstName;
+        this.lastName = lastName;
+        this.ssn = ssn;
+        this.dob = dob;
+        this.gender = gender;
     }
 
     /**

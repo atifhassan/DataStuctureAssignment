@@ -18,8 +18,6 @@ public final class User extends Person implements Serializable,Comparable {
     private String password;
     private String photo;
 
-    private Person one;
-
     /**
      *
      */
@@ -51,8 +49,11 @@ public final class User extends Person implements Serializable,Comparable {
      * @param password
      */
     public User(String firstName, String lastName, String ssn, LocalDate dob, String gender, String username, String email, String phone, String photo, String password) {
-        one = new Person(firstName, lastName, ssn, dob, gender);
-
+        super.setFirstName(firstName);
+        super.setLastName(lastName);
+        super.setSSN(ssn);
+        super.setDOB(dob);
+        super.setGender(gender);
         this.username = username;
         this.password = password;
         this.email = email;
@@ -142,9 +143,9 @@ public final class User extends Person implements Serializable,Comparable {
 
     @Override
     public String toString() {
-        return "Name " + one.getFirstName() + " " + one.getLastName()
-                + "\nDate of First: " + one.getDOB()
-                + "\nGender: " + one.getGender()
+        return "Name " + super.getFirstName() + " " + super.getLastName()
+                + "\nDate of First: " + super.getDOB()
+                + "\nGender: " + super.getGender()
                 + "\nUsername: " + getUsername()
                 + "\nE-mail: " + getEmail()
                 + "\nPhone Number: " + getPhoneNumber()
@@ -153,6 +154,11 @@ public final class User extends Person implements Serializable,Comparable {
                 + "\nPassword: " + getPassword();
     }
 
+    /**
+     *
+     * @param compare
+     * @return
+     */
     public boolean equals(User compare){
         return this.username.equals(compare.getUsername())&& this.password.equals(compare.getPassword());
     }

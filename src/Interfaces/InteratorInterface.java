@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import Exceptions.NullElementException;
+
 /**
  *
  * @author Atif Hassan
@@ -20,8 +22,9 @@ public interface InteratorInterface<E extends Comparable> {
     /**
      *
      * @return
+     * @throws Exceptions.NullElementException
      */
-    public E getNext();
+    public E getNext() throws NullElementException;
 
     /**
      *

@@ -13,7 +13,7 @@ import Exceptions.NullElementException;
  * @author Atif Hassan
  * @param <E>
  */
-public interface ListInterface<E extends Comparable> extends InteratorInterface<E>{
+public interface OrderedLinkedListInterface<E extends Comparable> extends InteratorInterface<E> {
 
     /**
      *
@@ -28,7 +28,7 @@ public interface ListInterface<E extends Comparable> extends InteratorInterface<
      * @throws EmptyException
      * @throws Exceptions.NullElementException
      */
-    public E remove(E element)throws EmptyException, NullElementException;
+    public E remove(E element) throws EmptyException, NullElementException;
 
     /**
      *
@@ -56,5 +56,5 @@ public interface ListInterface<E extends Comparable> extends InteratorInterface<
      * @throws Exceptions.EmptyException
      * @throws Exceptions.NullElementException
      */
-    public E get(E element) throws EmptyException,NullElementException;
+    public E get(E element) throws EmptyException, NullElementException;
 }

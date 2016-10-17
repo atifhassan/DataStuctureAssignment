@@ -18,12 +18,12 @@ import static org.junit.Assert.*;
  *
  * @author Atif Hassan
  */
-public class LinkedListTest {
+public class OrderedLinkedListTest {
 
     /**
      *
      */
-    public LinkedListTest() {
+    public OrderedLinkedListTest() {
     }
 
     /**
@@ -55,12 +55,12 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of add method, of class LinkedList.
+     * Test of add method, of class OrderedLinkedList.
      */
     @Test
     public void testAdd() {
         System.out.println("add");
-        LinkedList<String> tester = new LinkedList<>();
+        OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -70,12 +70,12 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of isEmpty method, of class LinkedList.
+     * Test of isEmpty method, of class OrderedLinkedList.
      */
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
-        LinkedList<String> tester = new LinkedList<>();
+        OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -88,12 +88,12 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of toString method, of class LinkedList.
+     * Test of toString method, of class OrderedLinkedList.
      */
     @Test
     public void testToString() {
         System.out.println("toString");
-        LinkedList<String> tester = new LinkedList<>();
+        OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -106,14 +106,14 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of remove method, of class LinkedList.
+     * Test of remove method, of class OrderedLinkedList.
      *
      * @throws java.lang.Exception
      */
     @Test
     public void testRemove() throws Exception {
         System.out.println("remove");
-        LinkedList<String> tester = new LinkedList<>();
+        OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -126,12 +126,12 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of contains method, of class LinkedList.
+     * Test of contains method, of class OrderedLinkedList.
      */
     @Test
     public void testContains() {
         System.out.println("contains");
-        LinkedList<String> tester = new LinkedList<>();
+        OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -144,7 +144,7 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of get method, of class LinkedList.
+     * Test of get method, of class OrderedLinkedList.
      *
      * @throws Exceptions.EmptyException
      * @throws Exceptions.NullElementException
@@ -152,7 +152,7 @@ public class LinkedListTest {
     @Test
     public void testGet() throws EmptyException, NullElementException {
         System.out.println("get");
-        LinkedList<String> tester = new LinkedList<>();
+        OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -165,12 +165,12 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of size method, of class LinkedList.
+     * Test of size method, of class OrderedLinkedList.
      */
     @Test
     public void testSize() {
         System.out.println("size");
-        LinkedList<String> tester = new LinkedList<>();
+        OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -183,24 +183,24 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of reset method, of class LinkedList.
+     * Test of reset method, of class OrderedLinkedList.
      */
     @Test
     public void testReset() {
         System.out.println("reset");
-        LinkedList instance = new LinkedList();
+        OrderedLinkedList instance = new OrderedLinkedList();
         instance.reset();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getNext method, of class LinkedList.
+     * Test of getNext method, of class OrderedLinkedList.
      */
     @Test
     public void testGetNext() {
         System.out.println("getNext");
-         LinkedList<String> tester = new LinkedList<>();
+         OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
@@ -213,12 +213,12 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of hasNext method, of class LinkedList.
+     * Test of hasNext method, of class OrderedLinkedList.
      */
     @Test
     public void testHasNext() {
         System.out.println("hasNext");
-         LinkedList<String> tester = new LinkedList<>();
+         OrderedLinkedList<String> tester = new OrderedLinkedList<>();
         tester.add("C");
         tester.add("A");
         tester.add("D");
