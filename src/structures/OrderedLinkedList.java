@@ -7,6 +7,7 @@ package structures;
 
 import Exceptions.EmptyException;
 import Exceptions.NullElementException;
+import Exceptions.RepeatElementException;
 import Interfaces.OrderedLinkedListInterface;
 
 /**
@@ -31,10 +32,13 @@ public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedLis
     /**
      *
      * @param element
+     * @throws Exceptions.RepeatElementException
      */
     @Override
-    public void add(E element) {
-
+    public void add(E element) throws RepeatElementException{
+        if(contains(element)){
+            throw new RepeatElementException();
+        }
         Node<E> newNode = new Node<>(element);
         if (isEmpty()) {
             newNode.setPointer(headPointer);

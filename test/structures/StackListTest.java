@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * @author Atif Hassan
  */
 public class StackListTest {
-    
+
 //    /**
 //     *
 //     */
@@ -54,7 +54,6 @@ public class StackListTest {
 //    @After
 //    public void tearDown() {
 //    }
-
     /**
      * Test of push method, of class StackList.
      */
@@ -65,12 +64,16 @@ public class StackListTest {
         instance.push("greg");
         instance.push("ed");
         instance.push("matt");
+        String expResult = "matt ed greg ";
+        String result = instance.toString();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
     /**
      * Test of top method, of class StackList.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -89,6 +92,7 @@ public class StackListTest {
 
     /**
      * Test of pop method, of class StackList.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -152,7 +156,9 @@ public class StackListTest {
         System.out.println("toString");
         StackList instance = new StackList();
         instance.push("greg");
-        String expResult = "greg";
+        instance.push("ed");
+        instance.push("matt");
+        String expResult = "matt ed greg ";
         String result = instance.toString();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -172,5 +178,5 @@ public class StackListTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
 }

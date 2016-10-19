@@ -102,7 +102,13 @@ public class StackList<E> implements StackInterface<E> {
      */
     @Override
     public String toString() {
-        return top.data.toString();
+        String list = "";
+        StackList temp = top;
+        while (temp != null) {
+            list += temp.data.toString() + " ";
+            temp = temp.next;
+        }
+        return list;
     }
 
     /**

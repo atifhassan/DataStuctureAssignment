@@ -24,8 +24,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -87,10 +85,7 @@ public class CreateAccountController implements Initializable {
     private String gender = null;
     private String ssn = null;
     private FileChooser fileCH = new FileChooser();
-    private Scanner read;
     private User one;
-    private Pattern pattern;
-    private Matcher match;
 
     /**
      * Returns user to Login Window

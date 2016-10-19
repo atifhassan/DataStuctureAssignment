@@ -65,6 +65,9 @@ public class OrderedLinkedListTest {
         tester.add("A");
         tester.add("D");
         tester.add("B");
+        String expResult = "A B C D ";
+        String result = tester.toString();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
     }

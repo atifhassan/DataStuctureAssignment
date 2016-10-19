@@ -7,6 +7,7 @@ package Interfaces;
 
 import Exceptions.EmptyException;
 import Exceptions.NullElementException;
+import Exceptions.RepeatElementException;
 
 /**
  *
@@ -18,8 +19,9 @@ public interface OrderedLinkedListInterface<E extends Comparable> extends Intera
     /**
      *
      * @param element
+     * @throws Exceptions.RepeatElementException
      */
-    public void add(E element);
+    public void add(E element) throws RepeatElementException;
 
     /**
      *

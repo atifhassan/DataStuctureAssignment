@@ -5,10 +5,7 @@ package Controllers;
 
 import Exceptions.EmptyException;
 import Exceptions.FullException;
-import classes.User;
 import classes.UserList;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +19,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import java.util.Scanner;
 
 /**
  *

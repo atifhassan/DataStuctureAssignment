@@ -7,6 +7,7 @@ package structures;
 
 import Exceptions.NullElementException;
 import Exceptions.OutOfBoundsException;
+import Exceptions.RepeatElementException;
 import Interfaces.IndexedLinkedListInterface;
 
 /**
@@ -22,15 +23,19 @@ public class IndexedLinkedList<E extends Comparable> implements IndexedLinkedLis
     private int count = 0;
 
     /**
-     *
+     * 
      * @param element
      * @param index
+     * @throws OutOfBoundsException
+     * @throws RepeatElementException 
      */
     @Override
-    public void add(E element, int index) throws OutOfBoundsException {
+    public void add(E element, int index) throws OutOfBoundsException, RepeatElementException {
         if (index > size()) {
             throw new OutOfBoundsException("The index is larger than list");
-        } else {
+        } else if(contains(element)){
+            throw new RepeatElementException();
+        }else {
             Node<E> newNode = new Node<>(element);
             currentPointer = headPointer;
             prevPointer = headPointer;

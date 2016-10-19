@@ -64,6 +64,9 @@ public class QueueListTest {
         instance.Enqueue("greg");
         instance.Enqueue("ed");
         instance.Enqueue("matt");
+        String expResult = "[greg, ed, matt, null, null, null, null, null, null, null]";
+        String result = instance.toString();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

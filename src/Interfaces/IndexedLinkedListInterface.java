@@ -7,6 +7,7 @@ package Interfaces;
 
 import Exceptions.NullElementException;
 import Exceptions.OutOfBoundsException;
+import Exceptions.RepeatElementException;
 
 /**
  *
@@ -20,8 +21,9 @@ public interface IndexedLinkedListInterface<E extends Comparable> extends Intera
      * @param element
      * @param index
      * @throws Exceptions.OutOfBoundsException
+     * @throws Exceptions.RepeatElementException
      */
-    public void add(E element, int index) throws OutOfBoundsException;
+    public void add(E element, int index) throws OutOfBoundsException, RepeatElementException;
     
     /**
      *

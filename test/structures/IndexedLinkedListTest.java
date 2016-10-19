@@ -65,6 +65,9 @@ public class IndexedLinkedListTest {
         tester.add("Matt", 0);
         tester.add("Pete", 1);
         tester.add("John", 2);
+        String expResult = "Matt Pete John Ed ";
+        String result = tester.toString();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
